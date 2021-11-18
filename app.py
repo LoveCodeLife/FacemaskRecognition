@@ -21,10 +21,20 @@ camara = cv2.VideoCapture(0)
 #el app pricipal
 app = Flask(__name__)
 
+
 @app.route("/")
 def root():
     return render_template("index.html")
 
+@app.route('/aboutus')
+def plot():
+    return render_template('about.html')
+@app.route('/prediction')
+def prediction():
+    return render_template('prediction.html')
+
+#@app.route('/predcit')
+#def predict():
 def agregar_fecha_hora_frame(frame):
     cv2.putText(frame, utiles.fecha_y_hora(), UBICACION_FECHA_HORA, FUENTE_FECHA_Y_HORA,
                 ESCALA_FUENTE, COLOR_FECHA_HORA, GROSOR_TEXTO, TIPO_LINEA_TEXTO,color=cv2.COLOR_YUV2RGBA_NV12)
@@ -45,7 +55,7 @@ def obtener_frame_camara():
     ok, frame = camara.read()
     if not ok:
         return False, None
-    agregar_fecha_hora_frame(frame)
+    #agregar_fecha_hora_frame(frame)
     # Escribir en el vídeo en caso de que se esté grabando
     if grabando and archivo_video is not None:
         archivo_video.write(frame)
@@ -58,3 +68,6 @@ def obtener_frame_camara():
 @app.route("/streaming_camara")
 def streaming_camara():
     return Response(generador_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+if __name__=='__main__':
+    app.run(debug=True)

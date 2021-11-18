@@ -14,7 +14,25 @@ html, body { height: 100%; }
 .green { color: #3B3; }
 .blue { color: #09E; }
 
-h1, h2 { margin-bottom: 20px; }
+#title1{
+	margin-bottom: 20px;
+}
+#title2{
+	margin-bottom: 20px;
+}
+.heading{
+	justify-content: center;
+    align-items: unset;
+    display: flex;
+	margin-top: 250px;
+}
+h2 { margin-bottom: 20px; }
+.text-white {
+	color: #fff !important; 
+}
+
+.text-uppercase  { text-transform: uppercase !important; }
+
 
 h2 { font-size: 24px; }
 .templatemo-container {
@@ -39,6 +57,8 @@ h2 { font-size: 24px; }
 	padding-left: 0;
 	padding-right: 30px;
 	vertical-align: top;
+	background-repeat: no-repeat;
+    background-size: cover;
 }
 .black-bg {
 	color: white;
@@ -48,8 +68,7 @@ h2 { font-size: 24px; }
 .tm-left-inner-container { margin-right: 30px; }
 .tm-right-inner-container {
 	margin-left: 30px;
-	/*max-width: 710px;*/
-	max-width: 1200px;
+	max-width: 710px;
 }
 .templatemo-logo { 
 	display: table;
