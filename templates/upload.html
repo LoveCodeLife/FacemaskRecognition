@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900|Oswald:400,700">
+	<link rel="stylesheet" type= "text/css" href="    {{url_for('static', filename='fonts/icomoon/style.css')}}
+">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/bootstrap.min.css') }}">	
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/font-awesome.min.css') }}">	
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/templatemo_style.css') }}">	
+
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/owl.theme.default.min.css')}}">
+
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='fonts/flaticon/font/flaticon.css')}}">
+
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/fancybox.min.css')}}">
+
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    <div class="templatemo-logo visible-xs-block">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg logo-left-container">
+            <h1 class="logo-left">Facemask Detection</h1>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg logo-right-container">
+
+        </div>
+    </div>
+
+    <div class="templatemo-container">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg left-container">
+            <h1 class="logo-left hidden-xs margin-bottom-60" id="title1">Facemask</h1>
+            <div class="tm-left-inner-container">
+                <ul class="nav nav-stacked templatemo-nav">
+                    <li><a href="/">Homepage</a></li>
+
+                    <li><a href="aboutus">About us</a></li>
+
+                    <li><a href="prediction">Camera</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg right-container" style="background-color: darkolivegreen;">
+            <h1 class="logo-right hidden-xs margin-bottom-60" id="title2">Streaming App</h1>
+
+            <section class="site-section" id="section-xray">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-md-8">
+                      <h2 class="text-white mb-5 heading">Face Mask Detection</h2>
+        
+        
+                     
+                     <div  style="color: white">
+        <form action="/predict" method="POST" enctype="multipart/form-data" id="myform">
+        <div id="dropzone">
+          
+          <div><br><br><br>Drag and Drop image / Select<br><br><br></div>
+          
+            <input type="file" accept="image/png image/jpg image/jpeg" name="ima" id="qw" />
+        </div>     
+        <input type="submit" class="btn btn-success" name="submit" value="predict"/>
+        
+              </form>          
+              <div><img src=""></div>     <strong ><h1 id="result">{{predict}}</h1></strong>
+                                 </div>
+        
+                    </div>
+                  </div>
+                </div>
+              </section>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" id="rendered-js">
+        $(function() {
+        
+        $('#dropzone').on('dragover', function() {
+          $(this).addClass('hover');
+        });
+        
+        $('#dropzone').on('dragleave', function() {
+          $(this).removeClass('hover');
+        });
+        
+        $('#dropzone input').on('change', function(e) {
+          var file = this.files[0];
+      
+          $('#dropzone').removeClass('hover');
+          
+          
+          $('#dropzone').addClass('dropped');
+          $('#dropzone img').remove();
+          
+          if ((/^image\/(gif|png|jpeg|jpg)$/i).test(file.type)) {
+            var reader = new FileReader(file);
+      
+            reader.readAsDataURL(file);
+            
+            reader.onload = function(e) {
+              var data = e.target.result,
+                  $img = $('<img />').attr('src', data).fadeIn();
+              
+              $('#dropzone div').html($img);
+            };
+          } else {
+            var ext = file.name.split('.').pop();
+            
+            $('#dropzone div').html(ext);
+          }
+        });
+      });
+      </script>
+       
+
+</body>
+
+</html>
